@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Created on Tue Dec 17 22:11:47 2024
-@author: ashis
+
+@author: NightfallDreams
 """
 
 import streamlit as st
@@ -11,7 +11,7 @@ import joblib
 from datetime import datetime
 
 # Load your trained model (replace with your model's actual path)
-model = joblib.load('E:/Machine Learning/FlightPricePrediction/Model/flight_rf.pkl')
+model = joblib.load('FlightPricePrediction/Model/flight_rf.pkl.gz')
 
 # Title of the app
 st.title("Flight Price Prediction App")
