@@ -1,0 +1,73 @@
+Architecture of the Flight Price Prediction App
+The project follows a modular and scalable architecture, designed to ensure clarity, efficiency, and maintainability. Below is an outline of the architecture:
+
+1. Frontend (User Interface Layer)
+Tools/Frameworks:
+
+Streamlit: Provides an interactive web interface for the user.
+Responsibilities:
+
+Collect user inputs such as Total Stops, Journey Date, Departure/Arrival Times, Source, Destination, Airline, etc.
+Display user inputs and predictions in a clear and user-friendly format.
+Render dynamic components like sliders, dropdowns, and buttons for ease of use.
+Handle UI feedback like animations (e.g., balloons) and styled outputs for predicted prices.
+2. Backend (Processing Layer)
+Tools/Frameworks:
+
+Python: Core programming language.
+Joblib: For loading the pre-trained machine learning model.
+Pandas: For data manipulation and preparation.
+Numpy: For numerical computations.
+Responsibilities:
+
+Parse and process user inputs into the format expected by the machine learning model.
+Perform data validation and transformation (e.g., converting dates/times to model-compatible formats, one-hot encoding for categorical variables).
+Load the pre-trained machine learning model (a Random Forest Regressor).
+Generate predictions using the model and formatted inputs.
+3. Model Layer
+Components:
+
+Pre-trained Random Forest Regressor model compressed in .pkl.gz format.
+Feature engineering logic embedded within the training process.
+Responsibilities:
+
+Predict flight prices based on input features.
+Ensure compatibility with the processed input feature set (ensured via feature alignment during prediction).
+File:
+
+flight_rf.pkl.gz (Pre-trained and compressed model file).
+4. Data Handling Layer
+Tools:
+
+Pandas DataFrame: For structuring input data.
+Reindexing Mechanism: Ensures input features align with the model's expected feature set.
+Responsibilities:
+
+Map user inputs to structured data.
+Handle missing or extraneous features by filling with default values (e.g., zeros for unused categorical encodings).
+5. Deployment Layer
+Tools:
+
+Streamlit Framework: Used for hosting and running the web app locally or in the cloud.
+Server (Optional):
+Deployed on a local machine or platforms like Heroku, AWS, or Google Cloud for broader access.
+Responsibilities:
+
+Serve the application to users via a browser-based interface.
+Ensure low latency for input processing and prediction generation.
+6. Interaction Flow
+User Input:
+The user provides input data via the web interface.
+Input Validation:
+Inputs are validated and preprocessed in the backend.
+Feature Transformation:
+Inputs are transformed into model-compatible formats, including one-hot encoding for categorical variables.
+Prediction:
+The transformed data is passed to the machine learning model, which generates the predicted flight price.
+Output Display:
+The predicted price and a summary of input details are displayed on the frontend.
+7. Files/Directories
+app.py: Main application script for Streamlit.
+requirements.txt: Specifies dependencies for the project.
+flight_rf.pkl.gz: Pre-trained machine learning model.
+Logs/Results (optional): For debugging and storing past predictions (if implemented).
