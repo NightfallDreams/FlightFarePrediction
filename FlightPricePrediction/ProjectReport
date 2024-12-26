@@ -1,0 +1,226 @@
+1. Project Overview
+
+The Flight Price Prediction App is an interactive web application designed to predict flight ticket prices based on user-provided details such as journey date, departure and arrival times, total stops, source and destination cities, and airline preferences. The app leverages a pre-trained Random Forest model to provide accurate price predictions and offers a user-friendly interface through Streamlit.
+
+2. Objectives
+
+To enable users to predict flight ticket prices by inputting relevant travel details.
+
+To offer a simple and intuitive interface for non-technical users.
+
+To demonstrate the practical application of machine learning in real-world scenarios.
+
+3. System Architecture
+
+Frontend (User Interface Layer)
+
+Built using Streamlit to provide an interactive and responsive web interface.
+
+Users interact with sliders, dropdown menus, and date/time inputs to provide necessary details.
+
+Displays predictions and input summaries in an organized format.
+
+Backend (Processing Layer)
+
+Python handles the logic for data processing and prediction.
+
+Preprocesses user inputs, such as converting dates/times and performing one-hot encoding for categorical features.
+
+Model Layer
+
+A pre-trained Random Forest Regressor model is used for predictions.
+
+The model is stored in a compressed .pkl.gz file format for efficient loading.
+
+Data Handling Layer
+
+Pandas is used to structure and process the input data.
+
+Ensures alignment of user-provided features with the model’s expected input format.
+
+Deployment Layer
+
+The app can be deployed locally or on cloud platforms such as Heroku or AWS.
+
+Streamlit serves the app via a browser-based interface.
+
+4. Features and Functionality
+
+User Inputs
+
+Journey Details:
+
+Total stops (slider input).
+
+Journey date (date input).
+
+Departure and arrival times (time input).
+
+Flight Details:
+
+Airline (dropdown menu with options like Air India, IndiGo, Jet Airways, etc.).
+
+Source and destination cities (dropdown menus).
+
+Passenger Details:
+
+Number of passengers (numeric input).
+
+Seat type (dropdown menu: Economy, Business, etc.).
+
+Predictions and Output
+
+Displays the predicted flight price.
+
+Highlights the input summary, including airline, travel dates, duration, and total stops.
+
+Provides a styled output and animations for better user experience.
+
+5. Implementation Details
+
+5.1 Model Training
+
+Dataset: The training dataset includes historical flight data with features such as airline, source, destination, stops, and journey details.
+
+Model: Random Forest Regressor, selected for its robustness and ability to handle non-linear relationships.
+
+Preprocessing:
+
+One-hot encoding for categorical features.
+
+Extraction of journey day and month from the date.
+
+Calculation of duration from departure and arrival times.
+
+Performance Metrics:
+
+The model was evaluated using metrics such as R² score and Mean Absolute Error (MAE).
+
+Achieved an R² score of approximately 0.85 on the validation set.
+
+5.2 Application Development
+
+Frontend:
+
+Designed using Streamlit’s components for simplicity and ease of use.
+
+Input components include sliders, dropdown menus, and date/time pickers.
+
+Backend:
+
+Processes user inputs into a Pandas DataFrame.
+
+Aligns features with the trained model’s expected input format.
+
+Generates predictions using the loaded model.
+
+Model Integration:
+
+The trained model is stored in .pkl.gz format.
+
+Integrated using the joblib library for efficient loading and prediction.
+
+6. Technology Stack
+
+Programming Languages
+
+Python 3.x
+
+Libraries and Frameworks
+
+Streamlit: Web application framework.
+
+Pandas: Data manipulation and processing.
+
+Numpy: Numerical computations.
+
+Joblib: Model serialization and deserialization.
+
+Deployment
+
+Local deployment via Streamlit.
+
+Optional deployment on cloud platforms like Heroku or AWS for broader accessibility.
+
+7. User Interaction Flow
+
+Input Collection:
+
+The user provides details such as total stops, journey date, departure/arrival times, airline, source, and destination.
+
+Input Validation and Preprocessing:
+
+Validates input values (e.g., ensures arrival time is after departure time).
+
+Converts inputs into model-compatible formats (e.g., one-hot encoding for categorical features).
+
+Prediction Generation:
+
+Processes the input through the trained Random Forest model.
+
+Outputs the predicted flight price.
+
+Result Display:
+
+Shows the predicted price and a summary of the user’s input details.
+
+Enhances the user experience with styled outputs and animations.
+
+8. Challenges and Solutions
+
+Challenge 1: Handling Overnight Flights
+
+Issue: Arrival time might be earlier than departure time due to overnight travel.
+
+Solution: Added one day to arrival time when necessary to calculate the correct duration.
+
+Challenge 2: Feature Alignment
+
+Issue: Ensuring the input features align with the model’s expected input format.
+
+Solution: Used reindex to match feature names, filling missing values with zero.
+
+Challenge 3: Model Integration
+
+Issue: Efficiently loading the model for predictions.
+
+Solution: Stored the model in a compressed .pkl.gz format and loaded it using joblib.
+
+9. Future Scope
+
+Additional Features:
+
+Incorporate more factors like seasonal trends, holiday effects, and demand fluctuations.
+
+Include more airlines and city options.
+
+Improved Predictions:
+
+Train models with larger datasets for better accuracy.
+
+Experiment with advanced algorithms such as Gradient Boosting or Neural Networks.
+
+Deployment Enhancements:
+
+Deploy on cloud platforms for broader access.
+
+Add authentication for secure access.
+
+User Experience:
+
+Provide interactive visualizations for price trends.
+
+Enable saving or sharing of predictions.
+
+10. Files and Directories
+
+app.py: Main application script.
+
+flight_rf.pkl.gz: Pre-trained Random Forest model.
+
+requirements.txt: Lists dependencies.
+
+11. Conclusion
+
+The Flight Price Prediction App is a practical demonstration of machine learning’s capabilities in real-world applications. It provides an intuitive interface for users to predict flight prices and showcases the potential for further enhancement and deployment on a larger scale.
+
